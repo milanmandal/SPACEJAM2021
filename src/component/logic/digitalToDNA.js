@@ -127,26 +127,26 @@ function getSecondPart(enc) {
     return enc.split('/')[1];
 }
 // Takes the binary enocoded message previosly split and converts it into the DNA single strand message (Encoding Part)
-function convertToDNA(binary){
+function binaryToDNA(binary){
         // find the length of a string
         const len = binary.length;
         log(len);
         var DNAstr = '';
         if(len%2!=0){
-            binary+='0'; // incase the binary message has odd length
+            binary='0'+binary; // incase the binary message has odd length
         }
-        for (let i = 0; i < len -1; i+=2) {
+        for (let i = 0; i < len ; i+=2) {
             if (binary[i]==='1' && binary[i+1]==='1') {
-                DNAstr+='A'
+              DNAstr=DNAstr+'A';
             }
             else if(binary[i]==='0' && binary[i+1]==='0'){
-                DNAstr+='T'
+              DNAstr=DNAstr+'T';
             }
             else if(binary[i]==='0' && binary[i+1]==='1'){
-                DNAstr+='G'
+              DNAstr=DNAstr+'G';
             }
             else{
-                DNAstr+='C'
+              DNAstr=DNAstr+'C';
             }
         }
             if(len%2==0)// Adding a character to DNA strand to signify whether message was even or odd
@@ -160,11 +160,33 @@ function convertToDNA(binary){
     }
     // Function to Convert given DNa strand to its corresponding binary counterpart (Decoding Part)
     function DNAtobinary(finalDNAstr){
-        var len=finalDNAstr.length;
+        var len;
         var finalDNAtoBinary = '';
         if(finalDNAstr[0]==='A'){
             finalDNAstr = finalDNAstr.substring(1);
+            len = finalDNAstr.length;
+            log(finalDNAstr+'-inDNAtoBinary');
+            for(var i=0;i<len;i++){
+                if(finalDNAstr[i]==='A'){
+                    finalDNAtoBinary+='11';
+                }
+                else if(finalDNAstr[i]==='T'){
+                    finalDNAtoBinary+='00';
+                }
+                else if(finalDNAstr[i]==='G'){
+                    finalDNAtoBinary+='01';
+                }
+                else {
+                    finalDNAtoBinary+='10';
+                }
+                // log(i);
+            }
+            
+        }
+        else{
+            finalDNAstr=finalDNAstr.substring(1);
             log(finalDNAstr);
+            len = finalDNAstr.length;
             for(var i=0;i<len;i++){
                 if(finalDNAstr[i]==='A'){
                     finalDNAtoBinary+='11';
@@ -179,33 +201,15 @@ function convertToDNA(binary){
                     finalDNAtoBinary+='10';
                 }
             }
-        }
-        else if(finalDNAstr[0]==='T'){
-            finalDNAstr=finalDNAstr.substring(1);
-            log(finalDNAstr)
-            for(var i=0;i<len;i++){
-                if(finalDNAstr[i]==='A'){
-                    finalDNAtoBinary='11'+finalDNAtoBinary;
-                }
-                else if(finalDNAstr[i]==='T'){
-                    finalDNAtoBinary='00'+finalDNAtoBinary;
-                }
-                else if(finalDNAstr[i]==='G'){
-                    finalDNAtoBinary='01'+finalDNAtoBinary;
-                }
-                else {
-                    finalDNAtoBinary='10'+finalDNAtoBinary;
-                }
-            }
             finalDNAtoBinary= finalDNAtoBinary.substring(1);
         }
         return finalDNAtoBinary;
     }
-var enc = Huffman.encode('malayalam');// Returns the huffmann code for the given string
+var enc = Huffman.encode('Malayalam');// Returns the huffmann code for the given string
 var binary=getSecondPart(enc);//Gets the binary part of the enocoded huffmann string
-log(binary);
-var finalDNAstr=convertToDNA(binary);//encodes the given binary string to its DNA strand
-log(finalDNAstr);
+log(binary+"-Binary");
+var finalDNAstr=binaryToDNA(binary);//encodes the given binary string to its DNA strand
+log(finalDNAstr+'-DNAstr');
 var finalDNAtoBinary = DNAtobinary(finalDNAstr);// Decodes the DNA strand to its binary
 log(finalDNAtoBinary);
 // var dec = Huffman.decode(enc);
