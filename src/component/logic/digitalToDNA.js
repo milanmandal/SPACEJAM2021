@@ -167,7 +167,7 @@ function binaryToDNA(binary){
         if(finalDNAstr[0]==='A'){
             finalDNAstr = finalDNAstr.substring(1);
             len = finalDNAstr.length;
-            log(finalDNAstr+'-inDNAtoBinary');
+            // log(finalDNAstr+'-inDNAtoBinary');
             for(var i=0;i<len;i++){
                 if(finalDNAstr[i]==='A'){
                     finalDNAtoBinary+='11';
@@ -207,15 +207,46 @@ function binaryToDNA(binary){
         }
         return finalDNAtoBinary;
     }
-var enc = Huffman.encode('Malayalam');// Returns the huffmann code for the given string
-log(enc+'ENC');
+    // 2 functions added to get strand 1 and strand 2 respectively
+    function getStrand1(finalDNAstr){
+        return finalDNAstr;
+    }
+    function getStrand2(finalDNAstr){
+        var len  = finalDNAstr.length;
+        var strand2 = '';
+        for(var i=0;i<len;i++)
+        {
+          if(finalDNAstr[i]==='A'){
+            strand2+='T';
+        }
+        else if(finalDNAstr[i]==='T'){
+            strand2+='A';
+        }
+        else if(finalDNAstr[i]==='G'){
+            strand2+='C';
+        }
+        else {
+            strand2+='G';
+        }
+        
+        }
+        // log(strand2);
+        return strand2;
+    }
+
+var enc = Huffman.encode('Abhinav');// Returns the huffmann code for the given string
+//Front end input must be passed to the above function in string format
+
 var binary=getSecondPart(enc);//Gets the binary part of the enocoded huffmann string
-log(binary+"-Binary");
+
 var finalDNAstr=binaryToDNA(binary);//encodes the given binary string to its DNA strand
-log(finalDNAstr+'-DNAstr');
+
+var strand1 = getStrand1(finalDNAstr);//getting strand 1 in string format
+
+var strand2 = getStrand2(finalDNAstr);//getting strand 2 in string format
+
 var finalDNAtoBinary = DNAtobinary(finalDNAstr);// Decodes the DNA strand to its binary
-log(finalDNAtoBinary);
-var finalDecode = firstPart+'/'+secondPart;
-log(finalDecode+'FinalDecode');
+
+var finalDecode = firstPart+'/'+finalDNAtoBinary;
 var dec = Huffman.decode(finalDecode);
 log(dec);
