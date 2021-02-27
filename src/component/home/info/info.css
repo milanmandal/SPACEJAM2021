@@ -1,0 +1,15 @@
+.header {
+    padding: 10px 16px;
+    position:fixed;
+  }
+
+.hide {
+display: none;
+}
+    
+.myDIV:hover + .hide {
+display: block;
+color: red;
+}
+    
+   

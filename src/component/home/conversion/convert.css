@@ -1,0 +1,12 @@
+.card
+{
+  width:98.4%;
+  padding :5px;
+  height:50%;
+  background-color:rgb(190, 55, 55);
+  opacity:1;
+  border-radius: 6px;
+  margin-top:10px;
+  margin-left: 20px;
+  color:white
+}
