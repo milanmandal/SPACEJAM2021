@@ -132,7 +132,7 @@ function getSecondPart(enc) {
 function binaryToDNA(binary){
         // find the length of a string
         const len = binary.length;
-        log(len);
+        // log(len);
         var DNAstr = '';
         if(len%2!=0){
             binary='0'+binary; // incase the binary message has odd length
@@ -187,7 +187,7 @@ function binaryToDNA(binary){
         }
         else{
             finalDNAstr=finalDNAstr.substring(1);
-            log(finalDNAstr);
+            // log(finalDNAstr);
             len = finalDNAstr.length;
             for(var i=0;i<len;i++){
                 if(finalDNAstr[i]==='A'){
