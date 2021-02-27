@@ -1,3 +1,5 @@
+const { __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED } = require("react-dom/cjs/react-dom.development");
+
 log = console.log.bind(console);
 var firstPart;
 var secondPart;
@@ -233,20 +235,23 @@ function binaryToDNA(binary){
         // log(strand2);
         return strand2;
     }
+    function getStrand(str){
+      var enc = Huffman.encode(str);
+      var binary=getSecondPart(enc);//Gets the binary part of the enocoded huffmann string    
+      var finalDNAstr=binaryToDNA(binary);//encodes the given binary string to its DNA strand
 
-var enc = Huffman.encode('Abhinav');// Returns the huffmann code for the given string
-//Front end input must be passed to the above function in string format
+      var strand1 = getStrand1(finalDNAstr);//getting strand 1 in string format
 
-var binary=getSecondPart(enc);//Gets the binary part of the enocoded huffmann string
+      var strand2 = getStrand2(finalDNAstr);//getting strand 2 in string format
+      var finalDNAtoBinary = DNAtobinary(finalDNAstr);// Decodes the DNA strand to its binary
 
-var finalDNAstr=binaryToDNA(binary);//encodes the given binary string to its DNA strand
-
-var strand1 = getStrand1(finalDNAstr);//getting strand 1 in string format
-
-var strand2 = getStrand2(finalDNAstr);//getting strand 2 in string format
-
-var finalDNAtoBinary = DNAtobinary(finalDNAstr);// Decodes the DNA strand to its binary
-
-var finalDecode = firstPart+'/'+finalDNAtoBinary;
-var dec = Huffman.decode(finalDecode);
-log(dec);
+      var finalDecode = firstPart+'/'+finalDNAtoBinary;
+      var dec = Huffman.decode(finalDecode);
+      // log(dec);
+      var strand = [strand1,strand2];
+      
+      return strand;
+    }
+    var strand=getStrand('Abhinav');
+    log('Converted DNA Strand : '+strand[0]);
+    log('Complement DNA Strand : '+strand[1]);
