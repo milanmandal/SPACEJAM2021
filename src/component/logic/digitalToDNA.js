@@ -1,5 +1,6 @@
 log = console.log.bind(console);
 var firstPart;
+var secondPart;
 
 // Huffmann code from here till line 122-No alteration required..
 var Heap = function(fn) {
@@ -124,6 +125,7 @@ var Huffman = {
 // getting the binary code from the returned huffmann encoded string i.e after the character '/'
 function getSecondPart(enc) {
     firstPart = enc.split('/')[0];
+    secondPart = enc.split('/')[1];
     return enc.split('/')[1];
 }
 // Takes the binary enocoded message previosly split and converts it into the DNA single strand message (Encoding Part)
@@ -206,11 +208,14 @@ function binaryToDNA(binary){
         return finalDNAtoBinary;
     }
 var enc = Huffman.encode('Malayalam');// Returns the huffmann code for the given string
+log(enc+'ENC');
 var binary=getSecondPart(enc);//Gets the binary part of the enocoded huffmann string
 log(binary+"-Binary");
 var finalDNAstr=binaryToDNA(binary);//encodes the given binary string to its DNA strand
 log(finalDNAstr+'-DNAstr');
 var finalDNAtoBinary = DNAtobinary(finalDNAstr);// Decodes the DNA strand to its binary
 log(finalDNAtoBinary);
-// var dec = Huffman.decode(enc);
-// log(dec);
+var finalDecode = firstPart+'/'+secondPart;
+log(finalDecode+'FinalDecode');
+var dec = Huffman.decode(finalDecode);
+log(dec);
