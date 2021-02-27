@@ -1,6 +1,7 @@
 log = console.log.bind(console);
 var firstPart;
 
+// Huffmann code from here till line 122-No alteration required..
 var Heap = function(fn) {
   this.fn = fn || function(e) {
     return e;
@@ -118,17 +119,21 @@ var Huffman = {
     return result;
   }
 };
+// Huffmann coding till here- No need to alter or change
+
+// getting the binary code from the returned huffmann encoded string i.e after the character '/'
 function getSecondPart(enc) {
     firstPart = enc.split('/')[0];
     return enc.split('/')[1];
 }
+// Takes the binary enocoded message previosly split and converts it into the DNA single strand message (Encoding Part)
 function convertToDNA(binary){
         // find the length of a string
         const len = binary.length;
         log(len);
         var DNAstr = '';
         if(len%2!=0){
-            binary+='0';
+            binary+='0'; // incase the binary message has odd length
         }
         for (let i = 0; i < len -1; i+=2) {
             if (binary[i]==='1' && binary[i+1]==='1') {
@@ -144,7 +149,7 @@ function convertToDNA(binary){
                 DNAstr+='C'
             }
         }
-            if(len%2==0)
+            if(len%2==0)// Adding a character to DNA strand to signify whether message was even or odd
             {
                 DNAstr='A'+DNAstr;
             }
@@ -153,6 +158,7 @@ function convertToDNA(binary){
             }
         return DNAstr;
     }
+    // Function to Convert given DNa strand to its corresponding binary counterpart (Decoding Part)
     function DNAtobinary(finalDNAstr){
         var len=finalDNAstr.length;
         var finalDNAtoBinary = '';
@@ -195,12 +201,12 @@ function convertToDNA(binary){
         }
         return finalDNAtoBinary;
     }
-var enc = Huffman.encode('malayalam');
-var binary=getSecondPart(enc);
+var enc = Huffman.encode('malayalam');// Returns the huffmann code for the given string
+var binary=getSecondPart(enc);//Gets the binary part of the enocoded huffmann string
 log(binary);
-var finalDNAstr=convertToDNA(binary);
+var finalDNAstr=convertToDNA(binary);//encodes the given binary string to its DNA strand
 log(finalDNAstr);
-var finalDNAtoBinary = DNAtobinary(finalDNAstr);
+var finalDNAtoBinary = DNAtobinary(finalDNAstr);// Decodes the DNA strand to its binary
 log(finalDNAtoBinary);
 // var dec = Huffman.decode(enc);
 // log(dec);
