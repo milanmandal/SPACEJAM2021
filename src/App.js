@@ -1,28 +1,18 @@
 import React from 'react'
 import './App.css'
 import Particle from './component/home/background/particles'
-import Body from './component/home/body/body'
-import Info from './component/home/info/info'
+import "bootstrap/dist/css/bootstrap.min.css"; //Bootstrap helful for CSS
+import { BrowserRouter as Router, Route,Switch} from "react-router-dom";
+import Cover from './component/home/cover/cover'
+import Encode from './component/home/conversion/encode'
 export default function App() {
   return (
-      <div>
+    <Router>
         <div className="particles-js">
-        <Particle/>
+          <Particle/>
         </div> 
-        <div><Info/></div>
-        <div className="text">
-          DNA 
-          <br></br>
-          Deco - Enco
-        </div>
-        <div className="text">
-        <Body/>
-        </div>
-        
-        
-               
-      </div>
-        
-        
+      <Route path="/" exact component={Cover} />
+      <Route path="/encode" exact component={Encode}/>
+</Router>
   )
 }

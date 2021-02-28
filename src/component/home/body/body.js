@@ -1,22 +1,11 @@
 import React from 'react'
 import './body.css'
-import Convert from '../conversion/convert'
+import {Link} from 'react-router-dom'
 function body() {
 
-
-    const encode=()=>
-    {
-        return(<Convert/>)
-    }
-    const decode=()=>
-    {
-
-    }
     return (
-        <div className='pos'>
-            <button className="enco eglow" onClick={encode}>encode</button> <button className="deco dglow" onClick={decode}>decode</button>
-            <br></br>
-            <textarea className="input"> </textarea>  <textarea className="input"> </textarea>
+        <div>
+            <Link to={'/encode'}><button className="enco eglow" >encode</button></Link> <Link to={'/decode'}><button className="deco dglow" >decode</button></Link>
         </div>
         
     )

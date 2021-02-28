@@ -2,7 +2,7 @@
 .deco{
     
     color:rgba(77, 71, 71, 0.94);
-    font-size: 5vh;
+    font-size: 3vh;
     font-weight: bold;
     background-color:rgb(75, 141, 8);
     border-radius: 5px;;
@@ -12,7 +12,7 @@
 }
 .enco{
     color:white;
-    font-size: 5vh;
+    font-size: 3vh;
     font-weight: bold;
     background-color:rgb(172, 9, 9);
     border-radius: 5px;;
@@ -23,12 +23,12 @@
 
 input[type=text]
 {
-    width: 20vw;
-    
+    width: 200%;
+    position:relative;
     box-sizing: border-box;
     border: 2px solid #ccc;
     border-radius: 8px;
-    font-size: 50vw;
+    font-size: 30px;
     background-color:white;
 
 }

@@ -1,0 +1,12 @@
+.text{
+    text-align:center;
+    left:40%;
+    margin-top: 10%;
+    position: absolute;
+      color: white;
+      max-width: auto;
+    font-size:7vh;
+      background: rgba(0, 0, 0, 0.4);
+      text-shadow: 0px 0px 2px #131415;
+      font-family: 'Open Sans', sans-serif;
+  }
