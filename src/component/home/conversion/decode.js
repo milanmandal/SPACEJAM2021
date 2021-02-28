@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './convert.css'
 import Logic from '../../logic/digitalToDNA'
+import {Link} from 'react-router-dom'
 let data='';
 export class convert extends Component {
     constructor(props) {
@@ -28,7 +29,7 @@ export class convert extends Component {
     }
     render() {
         return (
-            <div className="container">
+            <div className="in">
               The DNA strand after printing could be used to regain the information which was encoded in the strands and injected as a serum.
 
               <Link to={'/'}><button className="btn btn-success" >HOME</button></Link>       
